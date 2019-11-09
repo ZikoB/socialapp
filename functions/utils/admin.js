@@ -4,6 +4,7 @@ if (process.env.NODE_ENV === "development") {
   var serviceAccount = require("../../key.json");
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
+    storageBucket: "socialapp-6d379.appspot.com",
   });
   console.log("dev");
 } else {
