@@ -28,6 +28,16 @@ let db = {
       createdAt: "2019-11-08T23:28:16.896Z",
     },
   ],
+  notifications: [
+    {
+      recipient: "user",
+      sender: "jean",
+      read: "true | false",
+      postId: "1GxmSFPUBMG4eHmXtLV6",
+      type: "like | comment",
+      createdAt: "2019-11-08T23:28:16.896Z",
+    },
+  ],
 };
 
 const userDetails = {
