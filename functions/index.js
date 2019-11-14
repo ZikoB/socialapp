@@ -5,6 +5,9 @@ const functions = require("firebase-functions");
 const app = require("express")();
 const FBAuth = require("./utils/fbAuth");
 
+const cors = require("cors");
+app.use(cors());
+
 const { db } = require("./utils/admin");
 
 const {
@@ -14,7 +17,7 @@ const {
   commentOnPost,
   likePost,
   unlikePost,
-  deletePost,
+  deletePost
 } = require("./handlers/posts");
 const {
   signup,
@@ -23,7 +26,7 @@ const {
   addUserDetails,
   getAuthenticatedUser,
   getUserDetails,
-  markNotificationsRead,
+  markNotificationsRead
 } = require("./handlers/users");
 
 // Posts route
@@ -44,7 +47,7 @@ app.get("/user", FBAuth, getAuthenticatedUser);
 app.get("/user/:handle", getUserDetails);
 app.post("/notifications", FBAuth, markNotificationsRead);
 
-exports.api = functions.https.onRequest(app);
+exports.api = functions.region("us-central1").https.onRequest(app);
 
 exports.createNotificationOnLike = functions
   .region("us-central1")
@@ -64,7 +67,7 @@ exports.createNotificationOnLike = functions
             sender: snapshot.data().userHandle,
             type: "like",
             read: false,
-            postId: doc.id,
+            postId: doc.id
           });
         }
       })
@@ -102,7 +105,7 @@ exports.createNotificationOnComment = functions
             sender: snapshot.data().userHandle,
             type: "comment",
             read: false,
-            postId: doc.id,
+            postId: doc.id
           });
         }
       })
